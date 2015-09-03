@@ -1,0 +1,21 @@
+/* Empty. Add your own CSS if you like */
+
+.scroll{
+  height:100%;
+}
+
+#smile-button-container{
+  text-align:center;
+  height:200px;
+  display:block;
+}
+
+#smile-button::before{
+  font-size:150px;
+  display: inline-block;
+  line-height: 150px;
+}
+
+#map{
+  height: 100%;
+}
