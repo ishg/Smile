@@ -1,5 +1,19 @@
 /* Empty. Add your own CSS if you like */
 
+@font-face {
+    font-family: 'Reef';
+    src: url('fonts/Reef.eot');
+    src: url('fonts/Reef.eot') format('embedded-opentype'),
+         url('fonts/Reef.woff2') format('woff2'),
+         url('fonts/Reef.woff') format('woff'),
+         url('fonts/Reef.ttf') format('truetype'),
+         url('fonts/Reef.svg#Reef') format('svg');
+}
+
+body{
+  font-family: "Reef";
+}
+
 .scroll{
   height:100%;
 }
