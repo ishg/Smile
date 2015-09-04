@@ -7,6 +7,15 @@
 // 'starter.controllers' is found in controllers.js
 angular.module('starter', ['ionic','ionic.service.core','ngCordova', 'starter.controllers', 'starter.services'])
 
+.run(function($localstorage){
+  var now = moment().format("MMM Do YY");
+  var time = $localstorage.get('time', '0');
+  if (now != time){
+    $localstorage.set('happy', '0');
+  }
+  $localstorage.set('time', now);
+})
+
 .run(function($ionicPlatform, $ionicPopup) {
   $ionicPlatform.ready(function() {
     // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard

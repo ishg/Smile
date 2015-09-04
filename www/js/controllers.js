@@ -1,6 +1,6 @@
 angular.module('starter.controllers', [])
 
-.controller('SmileCtrl', function($scope, $cordovaGeolocation, $http, $rootScope, $ionicLoading, $ionicUser, $cordovaDevice, $ionicPopup) {
+.controller('SmileCtrl', function($scope, $cordovaGeolocation, $http, $rootScope, $ionicLoading, $ionicUser, $cordovaDevice, $ionicPopup, $localstorage) {
   
   $('#smile-button').mousedown(function(){
     $('#smile-button').removeClass('ion-android-happy');
@@ -12,7 +12,13 @@ angular.module('starter.controllers', [])
     $('#smile-button').addClass('ion-android-happy');
   });
   
+  $scope.happy_times = $localstorage.get('happy', '0');
+  
   $scope.addSmile = function(){
+    
+    $scope.happy_times = parseInt($scope.happy_times) + 1;
+    $scope.happy_times = $scope.happy_times + "";
+    $localstorage.set('happy', $scope.happy_times);
     
     /*
     //Get User id
