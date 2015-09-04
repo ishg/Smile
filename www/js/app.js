@@ -46,7 +46,7 @@ angular.module('starter', ['ionic','ionic.service.core','ngCordova', 'starter.co
   $stateProvider
 
   // setup an abstract state for the tabs directive
-    .state('tab', {
+  .state('tab', {
     url: '/tab',
     abstract: true,
     templateUrl: 'templates/tabs.html'
@@ -70,6 +70,16 @@ angular.module('starter', ['ionic','ionic.service.core','ngCordova', 'starter.co
       'tab-map': {
         templateUrl: 'templates/tab-map.html',
         controller: 'MapCtrl'
+      }
+    }
+  })
+  
+  .state('tab.user', {
+    url: '/user',
+    views: {
+      'tab-user': {
+        templateUrl : 'templates/tab-user.html',
+        controller: 'UserCtrl'
       }
     }
   });
