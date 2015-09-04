@@ -20,16 +20,26 @@ body{
 
 #smile-button-container{
   text-align:center;
-  height:200px;
+  height:150px;
+  width: 150px;
+  margin: 0 auto;
   display:block;
+  background-color: #e0ffff;
+  box-shadow: 1px 2px 1px #eee;
+  border-radius: 20px;
 }
 
 #smile-button::before{
   font-size:150px;
   display: inline-block;
   line-height: 150px;
+  color: #33cd5f;
 }
 
 #map{
   height: 100%;
+}
+
+.card{
+  text-align:center;
 }

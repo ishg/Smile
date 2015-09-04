@@ -1,10 +1,28 @@
 <ion-view view-title="Smile">
   <ion-content class="padding" scroll="false">
-    <div>
-      Tell the world you're happy! Press the button
+    <div class="card">
+      <div class="item item-text-wrap">
+        "Don't worry, be happy. Every little thing is gonna be alright." - Bobby McFerrin
+        <!--Cycle through happiness quotes-->
+      </div>
     </div>
+    
     <div id="smile-button-container">
       <a id="smile-button" ng-click="addSmile()" class="button button-icon icon ion-android-happy"></a>  
+    </div>
+    <div class="card">
+      <div class="item item-text-wrap">
+        Go ahead! Press the button to tell the world you're happy!
+      </div>
+    </div>
+    <div class="card">
+      <div class="item item-divider item-balanced">
+        Today you were happy
+      </div>
+      <div class="item item-text-wrap">
+         <h1>0</h1>
+         <h3>times</h3>
+      </div>
     </div>
   </ion-content>
 </ion-view>
