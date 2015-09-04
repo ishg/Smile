@@ -43,3 +43,7 @@ body{
 .card{
   text-align:center;
 }
+
+.author{
+  font-style: italic;
+}

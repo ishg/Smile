@@ -1,6 +1,6 @@
 angular.module('starter.controllers', [])
 
-.controller('SmileCtrl', function($scope, $cordovaGeolocation, $http, $rootScope, $ionicLoading, $ionicUser, $cordovaDevice, $ionicPopup, $localstorage) {
+.controller('SmileCtrl', function($scope, $cordovaGeolocation, $http, $rootScope, $ionicLoading, $ionicUser, $cordovaDevice, $ionicPopup, $localstorage, QuoteService) {
   
   $('#smile-button').mousedown(function(){
     $('#smile-button').removeClass('ion-android-happy');
@@ -10,6 +10,10 @@ angular.module('starter.controllers', [])
   $('#smile-button').mouseup(function(){
     $('#smile-button').removeClass('ion-happy-outline');
     $('#smile-button').addClass('ion-android-happy');
+  });
+  
+  $scope.$on('$ionicView.enter', function(e) {
+    $scope.quote = QuoteService.get();
   });
   
   $scope.happy_times = $localstorage.get('happy', '0');
