@@ -1,7 +1,25 @@
 angular.module('starter.controllers', [])
 
-.controller('SmileCtrl', function($scope, $cordovaGeolocation, $http, $rootScope, $ionicLoading, $ionicUser, $cordovaDevice, $ionicPopup, $localstorage, QuoteService) {
+.controller('SmileCtrl', function($scope, $cordovaGeolocation, $http, $rootScope, $ionicLoading, $ionicUser, $cordovaDevice, $ionicPopup, $localstorage, QuoteService, $ionicModal) {
   
+  $ionicModal.fromTemplateUrl('modal.html', {
+    scope: $scope,
+    animation: 'slide-in-up'
+  }).then(function(modal){
+    $scope.modal = modal;
+  })
+
+  $scope.openModal = function(){
+    $scope.modal.show();
+  }
+
+  $scope.closeModal = function(){
+    $scope.modal.hide();
+  }
+
+
+
+
   $('#smile-button').mousedown(function(){
     $('#smile-button').removeClass('ion-android-happy');
     $('#smile-button').addClass('ion-happy-outline');
@@ -14,27 +32,20 @@ angular.module('starter.controllers', [])
   
   $scope.$on('$ionicView.enter', function(e) {
     $scope.quote = QuoteService.get();
+
+    if($localstorage.get('firstStart','0') == '0'){
+      $localstorage.set('firstStart', 'false');
+      $scope.openModal();
+    }
   });
   
   $scope.happy_times = $localstorage.get('happy', '0');
   
   $scope.addSmile = function(){
-    
+
     $scope.happy_times = parseInt($scope.happy_times) + 1;
     $scope.happy_times = $scope.happy_times + "";
     $localstorage.set('happy', $scope.happy_times);
-    
-    /*
-    //Get User id
-    $ionicUser.identify({
-      // OR, user the device's UUID
-      user_id: $cordovaDevice.getUUID()
-    }).then(function(){
-      alert($ionicUser);
-    }, function(err){
-      alert(err);
-    });
-    */
     
     $ionicLoading.show({
       template: '<ion-spinner></ion-spinner>'
@@ -43,7 +54,7 @@ angular.module('starter.controllers', [])
     if($rootScope.currentLocation){
       $scope.addPoint($rootScope.currentLocation);
     }else{
-      var posOptions = {timeout: 5000, enableHighAccuracy: false};
+      var posOptions = {timeout: 5000, enableHighAccuracy: true};
       $cordovaGeolocation
       .getCurrentPosition(posOptions)
       .then(
@@ -55,6 +66,7 @@ angular.module('starter.controllers', [])
           $scope.addPoint($rootScope.currentLocation);
         },
         function(err){
+          $ionicLoading.hide();
           $ionicPopup.confirm({
             title: "Location Error",
             content: "Could not determine your location. Please check that GPS is on and retry."
@@ -75,10 +87,22 @@ angular.module('starter.controllers', [])
     var url = 'https://ishg.cartodb.com/api/v2/sql?q=INSERT INTO happy_table (the_geom) VALUES (ST_SetSRID(ST_Point('+$rootScope.currentLocation.lng+','+ $rootScope.currentLocation.lat+'),4326))&api_key=026e40685a0abe1675f2c819cc9e5403d01c6fd6';
     $http.get(url).
       then(function(response) {
+
         console.log(response);
         $ionicLoading.hide();
       }, function(err) {
+        $ionicLoading.hide();
         console.log(err);
+
+        $ionicPopup.confirm({
+            title: "Network Error",
+            content: "We could not add you to the map at this time. Please try again later."
+          })
+          .then(function(result) {
+            if(!result) {
+              ionic.Platform.exitApp();
+            }
+          });
       });  
   };
   
