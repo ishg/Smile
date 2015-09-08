@@ -7,7 +7,7 @@ Share your moments of joy with the world!
 - Look at a map of other people being happy. 
 - Keep smiling! :)
 
-My first venture into mobile development. Used [Ionic Framework](http://ionicframework.com/) to build an app to make you smile.
+My first venture into mobile development. Used [Ionic Framework](http://ionicframework.com/) and [CartoDB](https://cartodb.com/) to build an app to make you smile.
 
 
 
