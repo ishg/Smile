@@ -1,3 +1,16 @@
-# smiles
+# Smile
+### Put your happiness in the cloud.
 
-My first venture into mobile development. Using Ionic to build an app that records when and where you were happy withing the last 24 hours and shows you a map of nearby places where people are happy so you can go be happy with them together.
+Share your moments of joy with the world! 
+- Just press the button when you're happy. 
+- Record your happy moments of the day.
+- Look at a map of other people being happy. 
+- Keep smiling! :)
+
+My first venture into mobile development. Used [Ionic Framework](http://ionicframework.com/) to build an app to make you smile.
+
+
+
+<a href="https://play.google.com/store/apps/details?id=com.ionicframework.smiles722181">
+<img alt="Get it on Google Play" src="http://steverichey.github.io/google-play-badge-svg/img/en_get.svg" />
+</a>
